@@ -1,7 +1,7 @@
-from products.models import Coin, PriceSnapshot
+from tracker.models import Coin, PriceSnapshot
 from rest_framework import permissions, viewsets
 
-from products.serializers import PriceSnapshotSerializer, CoinSerializer
+from tracker.serializers import PriceSnapshotSerializer, CoinSerializer
 
 class CoinViewSet(viewsets.ModelViewSet):
     """

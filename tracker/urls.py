@@ -1,6 +1,6 @@
 from rest_framework import routers
 
-from products.views import CoinViewSet, PriceSnapshotViewSet
+from tracker.views import CoinViewSet, PriceSnapshotViewSet
 
 router = routers.DefaultRouter()
 router.register(r'coins', CoinViewSet)

@@ -1,4 +1,4 @@
-from products.models import Coin, PriceSnapshot
+from tracker.models import Coin, PriceSnapshot
 from rest_framework import serializers
 
 class CoinSerializer(serializers.ModelSerializer):
