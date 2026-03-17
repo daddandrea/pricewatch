@@ -1,12 +1,13 @@
 from django.db import models
 
-class Product(models.Model):
-    name = models.CharField(max_length=30)
-    url = models.URLField(max_length=400)
-    threshold = models.DecimalField(max_digits=6, decimal_places=2)
-    tolerance = models.DecimalField(max_digits=5, decimal_places=2)
+class Coin(models.Model):
+    coin_id = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+    threshold = models.DecimalField(max_digits=12, decimal_places=2)
+    tolerance = models.DecimalField(max_digits=12, decimal_places=2)
+    alert_above = models.BooleanField(default=False)
 
 class PriceSnapshot(models.Model):
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    product = models.ForeignKey("Product", on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=12, decimal_places=2)
+    coin = models.ForeignKey("Coin", on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True)

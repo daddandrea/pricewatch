@@ -1,14 +1,14 @@
-from products.models import Product, PriceSnapshot
+from products.models import Coin, PriceSnapshot
 from rest_framework import permissions, viewsets
 
-from products.serializers import PriceSnapshotSerializer, ProductSerializer
+from products.serializers import PriceSnapshotSerializer, CoinSerializer
 
-class ProductViewSet(viewsets.ModelViewSet):
+class CoinViewSet(viewsets.ModelViewSet):
     """
-    ViewSet for viewing and editing Products.
+    ViewSet for viewing and editing Coin.
     """
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    queryset = Coin.objects.all()
+    serializer_class = CoinSerializer
     permission_classes = [permissions.AllowAny]
 
 class PriceSnapshotViewSet(viewsets.ReadOnlyModelViewSet):
