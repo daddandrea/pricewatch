@@ -11,3 +11,4 @@ class PriceSnapshot(models.Model):
     price = models.DecimalField(max_digits=12, decimal_places=2)
     coin = models.ForeignKey("Coin", on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True)
+    notified = models.BooleanField(default=False)

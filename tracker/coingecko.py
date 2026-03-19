@@ -9,7 +9,10 @@ API_KEY = os.environ["COINGECKO_API_KEY"]
 def fetch_prices(coin_ids: list[str]) -> dict[str, Decimal]:
     response = httpx.get(
         COINGECKO_API,
-        params={"ids": ",".join(coin_ids), "vs_currencies": "usd"},
+        params={
+            "ids": ",".join(coin_ids),
+            "vs_currencies": "usd"
+        },
         headers={"x-cg-demo-api-key": API_KEY},
         timeout=10,
     )

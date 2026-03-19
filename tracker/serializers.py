@@ -9,4 +9,4 @@ class CoinSerializer(serializers.ModelSerializer):
 class PriceSnapshotSerializer(serializers.ModelSerializer):
     class Meta:
         model = PriceSnapshot
-        fields = ["price", "coin", "time"]
+        fields = ["price", "coin", "time", "notified"]
