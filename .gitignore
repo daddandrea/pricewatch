@@ -1,7 +1,12 @@
 venv/
 __pycache__/
 *.pyc
+*.egg-info/
 db.sqlite3
 .env
 celerybeat-schedule
 dump.rdb
+.pytest_cache/
+node_modules/
+frontend/dist/
+.vscode/
