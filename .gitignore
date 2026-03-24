@@ -5,8 +5,12 @@ __pycache__/
 db.sqlite3
 .env
 celerybeat-schedule
+celerybeat-schedule.db
 dump.rdb
 .pytest_cache/
 node_modules/
 frontend/dist/
 .vscode/
+*.log
+.DS_Store
+pyrightconfig.json

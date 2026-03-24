@@ -5,8 +5,15 @@ __pycache__/
 .env
 db.sqlite3
 celerybeat-schedule
+celerybeat-schedule.db
 dump.rdb
 .git/
 node_modules/
 frontend/
 *.md
+.pytest_cache/
+pyrightconfig.json
+compose.yaml
+Dockerfile
+.dockerignore
+.gitignore

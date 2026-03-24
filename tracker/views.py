@@ -17,3 +17,10 @@ class PriceSnapshotViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = PriceSnapshot.objects.all()
     serializer_class = PriceSnapshotSerializer
+
+    def get_queryset(self):
+        queryset = PriceSnapshot.objects.all()
+        coin_id  = self.request.query_params.get("coin_id")
+        if coin_id:
+            queryset = queryset.filter(coin__coin_id=coin_id)
+        return queryset
