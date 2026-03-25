@@ -205,11 +205,6 @@ h1 {
     color: #555;
 }
 
-.price {
-    font-weight: 600;
-    color: #16a34a;
-}
-
 .last_price_snapshot {
     font-weight: 600;
     color: #16a34a;
