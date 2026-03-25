@@ -23,18 +23,6 @@ It tracks coin prices via the CoinGecko API and sends Telegram notifications whe
 - **Docker** / **Docker Compose**
 - **Vue.js** for the frontend
 
-## API
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/coins/` | List all tracked coins |
-| `POST` | `/api/coins/` | Add a new coin |
-| `GET` | `/api/coins/{id}/` | Get a specific coin |
-| `PUT` | `/api/coins/{id}/` | Update a coin |
-| `DELETE` | `/api/coins/{id}/` | Delete a coin |
-| `GET` | `/api/price_snapshots/` | List all price snapshots |
-| `GET` | `/api/price_snapshots/{id}/` | Get a specific snapshot |
-
 ## TODO
 
 - [ ] Fix frontend graphics
