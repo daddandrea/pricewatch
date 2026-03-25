@@ -21,6 +21,7 @@ It tracks coin prices via the CoinGecko API and sends Telegram notifications whe
 - **CoinGecko API** for price data
 - **Telegram Bot API** for notifications
 - **Docker** / **Docker Compose**
+- **Vue.js** for the frontend
 
 ## API
 
@@ -36,5 +37,5 @@ It tracks coin prices via the CoinGecko API and sends Telegram notifications whe
 
 ## TODO
 
-- [ ] Frontend with Vue
+- [ ] Fix frontend graphics
 - [ ] Deploy on AWS
