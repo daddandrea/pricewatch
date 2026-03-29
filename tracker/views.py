@@ -10,6 +10,7 @@ class CoinViewSet(viewsets.ModelViewSet):
     queryset = Coin.objects.all()
     serializer_class = CoinSerializer
     permission_classes = [permissions.AllowAny]
+    lookup_field = "coin_id"
 
 class PriceSnapshotViewSet(viewsets.ReadOnlyModelViewSet):
     """

@@ -58,7 +58,16 @@ async function fetchPriceSnapshot(coin_id) {
 
         error.value = null;
     } catch (err) {
-        error.value = err.response?.data?.detail || "Failed to fetch price snapshot for selected coin";
+        error.value = err.response?.data?.detail || "Failed to fetch price snapshot for selected coin.";
+    }
+}
+
+async function deleteCoin(coin_id) {
+    try {
+        await axios.delete(`/api/coins/${coin_id}/`);
+        coins.value = coins.value.filter(c => c.coin_id !== coin_id);
+    } catch (err) {
+        error.value = err.response?.data?.detail || "Failed to delete coin.";
     }
 }
 </script>
@@ -118,6 +127,7 @@ async function fetchPriceSnapshot(coin_id) {
                         ? coin.last_price_snapshot + "$"
                         : "N/A"
                 }}</span>
+                <button class="delete-btn" @click.stop="deleteCoin(coin.coin_id)">x</button>
             </li>
         </ul>
 
@@ -222,4 +232,14 @@ h1 {
   height: 300px;
   margin-top: 32px;
 }
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #dc2626;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 8px;
+}
+
 </style>
