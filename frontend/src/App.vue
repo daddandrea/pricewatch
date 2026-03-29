@@ -3,6 +3,8 @@ import PriceChart from "./components/PriceChart.vue"
 import { ref, onMounted } from "vue";
 import axios from "axios";
 
+const COINS_API_URL = "/api/coins/";
+
 const coins = ref([]);
 const form = ref({
     coin_id: "",
@@ -22,14 +24,15 @@ const priceSnapshots = ref([]);
 const error = ref(null);
 
 onMounted(async () => {
-    const response = await axios.get("/api/coins/");
+    const response = await axios.get(COINS_API_URL);
     coins.value = response.data;
 });
 
 async function addCoin() {
     try {
-        const response = await axios.post("/api/coins/", form.value);
-        coins.value.push(response.data);
+        const response = await axios.post(COINS_API_URL, form.value);
+        const newCoinId = response.data.coin_id;
+
         form.value = {
             coin_id: "",
             name: "",
@@ -38,6 +41,18 @@ async function addCoin() {
             alert_above: false,
         };
         error.value = null;
+
+        // Polling until we get priceSnapshot from worker.
+        const interval = setInterval(async () => {
+            const response = await axios.get(COINS_API_URL);
+            coins.value = response.data;
+
+            const coin = coins.value.find(c => c.coin_id === newCoinId);
+            if (coin?.last_price_snapshot !== null) {
+                clearInterval(interval);
+            }
+        }, 1000);
+
     } catch (err) {
         error.value = err.response?.data?.detail || "Failed to add coin.";
     }
@@ -51,9 +66,8 @@ function selectCoin(coin) {
 }
 
 async function fetchPriceSnapshot(coin_id) {
-    const url = "/api/price_snapshots/?coin_id=" + coin_id;
     try {
-        const response = await axios.get(url);
+        const response = await axios.get(`/api/price_snapshots/?coin_id=${coin_id}`);
         priceSnapshots.value = response.data;
 
         error.value = null;
@@ -66,6 +80,7 @@ async function deleteCoin(coin_id) {
     try {
         await axios.delete(`/api/coins/${coin_id}/`);
         coins.value = coins.value.filter(c => c.coin_id !== coin_id);
+        priceSnapshots.value = [];
     } catch (err) {
         error.value = err.response?.data?.detail || "Failed to delete coin.";
     }

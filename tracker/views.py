@@ -1,4 +1,5 @@
 from tracker.models import Coin, PriceSnapshot
+from tracker.tasks import save_price_snapshot
 from rest_framework import permissions, viewsets
 
 from tracker.serializers import PriceSnapshotSerializer, CoinSerializer
@@ -11,6 +12,10 @@ class CoinViewSet(viewsets.ModelViewSet):
     serializer_class = CoinSerializer
     permission_classes = [permissions.AllowAny]
     lookup_field = "coin_id"
+
+    def perform_create(self, serializer):
+        serializer.save()
+        save_price_snapshot.delay()
 
 class PriceSnapshotViewSet(viewsets.ReadOnlyModelViewSet):
     """
