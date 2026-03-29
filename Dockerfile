@@ -8,6 +8,7 @@ RUN pip install --upgrade pip
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
+RUN mkdir -p /app/data /app/celerybeat && chmod 777 /app/data /app/celerybeat
 EXPOSE 8000
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
